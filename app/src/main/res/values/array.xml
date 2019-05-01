@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="subjects">
+        <item>Mathematics</item>
+        <item>English</item>
+        <item>Computer</item>
+    </string-array>
+
+</resources>

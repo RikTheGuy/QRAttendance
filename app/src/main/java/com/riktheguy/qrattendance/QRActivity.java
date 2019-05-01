@@ -1,0 +1,94 @@
+package com.riktheguy.qrattendance;
+
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+public class QRActivity extends AppCompatActivity {
+
+    ImageView imageView;
+    Button button;
+    Spinner subject;
+    String GenText ;
+
+    public final static int QRcodeWidth = 500 ;
+    Bitmap bitmap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qr);
+
+        imageView = (ImageView)findViewById(R.id.iv_QRCode);
+        subject = (Spinner)findViewById(R.id.spinner_subject_type);
+        button = (Button)findViewById(R.id.bt_generate);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    GenText = String.format("{\"name\":\"%s\",\"address\":\"%s\"}", subject.getSelectedItem().toString(), LocalDate.now());
+                }
+
+                try {
+                    bitmap = TextToImageEncode(GenText);
+
+                    imageView.setImageBitmap(bitmap);
+
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    Bitmap TextToImageEncode(String Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(
+                    Value,
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    QRcodeWidth, QRcodeWidth, null
+            );
+
+        } catch (IllegalArgumentException Illegalargumentexception) {
+
+            return null;
+        }
+        int bitMatrixWidth = bitMatrix.getWidth();
+
+        int bitMatrixHeight = bitMatrix.getHeight();
+
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+
+            for (int x = 0; x < bitMatrixWidth; x++) {
+
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getResources().getColor(R.color.colorPrimary):getResources().getColor(R.color.qr_bg);
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+
+        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        return bitmap;
+    }
+}
