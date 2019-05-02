@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="10dp"
+    tools:context=".changedAttendanceActivity">
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ST-ID"
+            android:paddingLeft="20dp"
+        android:layout_marginVertical="10dp"/>
+
+         <EditText
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginVertical="10dp"
+             android:hint="Enter Date"
+             android:inputType="datetime"/>
+
+    <Spinner
+        android:id="@+id/spinner_subject_type"
+        style="@style/spinner_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:entries="@array/subjects"
+        android:textAlignment="center"
+        android:paddingVertical="10dp"
+        />
+    <Spinner
+        android:id="@+id/spinner_attendance_type"
+        style="@style/spinner_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:entries="@array/attendance"
+        android:textAlignment="center"
+        android:paddingVertical="10dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Attendance"
+        android:textColor="@color/ButtonText"
+        android:layout_gravity="bottom"
+        android:background="@color/ButtonBG"
+        android:layout_marginVertical="20dp"/>
+
+
+</LinearLayout>
