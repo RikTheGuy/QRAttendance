@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".changedAttendanceActivity"></activity>
+        <activity android:name=".ChangeAttendanceActivity"></activity>
         <activity
             android:name=".ManualActivity"
             android:label="@string/title_activity_manual"
@@ -28,10 +28,14 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".QRActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>
