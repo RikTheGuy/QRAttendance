@@ -3,6 +3,7 @@
     package="com.riktheguy.qrattendance">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,15 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
-        <activity android:name=".QRActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".ManualActivity"
+            android:label="@string/title_activity_manual"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".QRActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,21 +1,25 @@
+
 package com.riktheguy.qrattendance;
 
 import android.graphics.Bitmap;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class QRActivity extends AppCompatActivity {
@@ -24,6 +28,7 @@ public class QRActivity extends AppCompatActivity {
     Button button;
     Spinner subject;
     String GenText ;
+    ProgressBar progressBar;
 
     public final static int QRcodeWidth = 500 ;
     Bitmap bitmap;
@@ -36,26 +41,32 @@ public class QRActivity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.iv_QRCode);
         subject = (Spinner)findViewById(R.id.spinner_subject_type);
         button = (Button)findViewById(R.id.bt_generate);
+        progressBar = (ProgressBar)findViewById(R.id.progress_circular);
 
+        progressBar.setVisibility(View.INVISIBLE);
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    GenText = String.format("{\"name\":\"%s\",\"address\":\"%s\"}", subject.getSelectedItem().toString(), LocalDate.now());
-                }
-
-                try {
-                    bitmap = TextToImageEncode(GenText);
-
-                    imageView.setImageBitmap(bitmap);
-
-                } catch (WriterException e) {
-                    e.printStackTrace();
-                }
-
+                subject.setEnabled(false);
+                button.setEnabled(false);
+                button.setAlpha(0.3f);
+                imageView.setAlpha(0.1f);
+                Date d = Calendar.getInstance().getTime();
+                SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                GenText = "{\"name\":\""+subject.getSelectedItem().toString()+"\",\"address\":\""+format.format(d)+"\"}";
+                new ScanTask().execute();
             }
         });
+    }
+
+    public void Scan(){
+        try {
+            bitmap = TextToImageEncode(GenText);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
     }
 
     Bitmap TextToImageEncode(String Value) throws WriterException {
@@ -90,5 +101,30 @@ public class QRActivity extends AppCompatActivity {
 
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
+    }
+
+    public class ScanTask extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Scan();
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+            progressBar.setVisibility(View.GONE);
+            imageView.setImageBitmap(bitmap);
+            subject.setEnabled(true);
+            button.setEnabled(true);
+            button.setAlpha(1f);
+            imageView.setAlpha(1f);
+            super.onPostExecute(result);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+        }
     }
 }

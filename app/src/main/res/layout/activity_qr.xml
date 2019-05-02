@@ -36,6 +36,13 @@
         android:textColor="@color/ButtonText"
         android:text="Generate QR code" />
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/progress_circular"
+        android:visibility="visible"/>
+
     <ImageView
         android:id="@+id/iv_QRCode"
         android:layout_width="wrap_content"

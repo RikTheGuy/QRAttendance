@@ -19,6 +19,7 @@
         <item name="android:paddingBottom">5dp</item>
         <item name="android:popupBackground">#e1e1e1</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
