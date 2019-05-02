@@ -37,7 +37,7 @@
          android:id="@+id/bt_deatils"
          android:layout_width="wrap_content"
          android:layout_height="match_parent"
-         android:src="@drawable/ic_add_circle_black_24dp" />
+         android:src="@drawable/spinner_arrow" />
     </LinearLayout>
 
 </LinearLayout>

@@ -56,7 +56,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             itemView.findViewById(R.id.bt_deatils).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(context, LoginActivity.class);
+                    Intent i = new Intent(context, AttendanceActivity.class);
                     i.putExtra("pass_id",tv_id.getText());
                     context.startActivity(i);
                 }

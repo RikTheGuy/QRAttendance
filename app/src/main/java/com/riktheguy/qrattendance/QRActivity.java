@@ -1,6 +1,7 @@
 
 package com.riktheguy.qrattendance;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,22 @@ public class QRActivity extends AppCompatActivity {
         subject = (Spinner)findViewById(R.id.spinner_subject_type);
         button = (Button)findViewById(R.id.bt_generate);
         progressBar = (ProgressBar)findViewById(R.id.progress_circular);
+
+        findViewById(R.id.bt_checkAtt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ManualActivity.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.bt_add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),ManualActivity.class);
+                startActivity(i);
+            }
+        });
 
         progressBar.setVisibility(View.INVISIBLE);
         button.setOnClickListener(new View.OnClickListener() {

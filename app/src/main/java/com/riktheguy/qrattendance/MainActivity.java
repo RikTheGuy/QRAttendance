@@ -31,7 +31,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button buttonScan;
-//    private TextView textViewName, textViewAddress;
 
     private IntentIntegrator qrScan;
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //attaching onclick listener
         buttonScan.setOnClickListener(this);
 
-        bindChart("U16CS156");
+        bindChart(getIntent().getStringExtra("passid"));
     }
 
     //Getting the scan results
