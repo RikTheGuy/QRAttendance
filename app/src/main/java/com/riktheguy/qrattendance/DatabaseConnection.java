@@ -8,6 +8,7 @@ public class DatabaseConnection {
     static final String GETSTUDENT="getStudent.php";
     static final String UPDATE="update.php?";
     static final String LOGIN="login.php?";
+    static final String ADD="addStudent.php?";
 
 
 }

@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AddStudentActivity"></activity>
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".ChangeAttendanceActivity" />
         <activity
             android:name=".ManualActivity"
             android:label="@string/title_activity_manual"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme">

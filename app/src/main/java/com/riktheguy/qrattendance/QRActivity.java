@@ -55,7 +55,7 @@ public class QRActivity extends AppCompatActivity {
         findViewById(R.id.bt_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),ManualActivity.class);
+                Intent i = new Intent(getApplicationContext(),AddStudentActivity.class);
                 startActivity(i);
             }
         });

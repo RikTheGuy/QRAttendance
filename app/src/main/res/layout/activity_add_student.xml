@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="10dp"
+    android:gravity="center"
+    tools:context=".AddStudentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Student ID"
+            android:id="@+id/et_st_id"
+            android:paddingLeft="5dp"
+            android:layout_marginVertical="10dp"
+            />
+
+        <EditText
+            android:id="@+id/et_name_S"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:enabled="true"
+            android:inputType="text"
+            android:hint="Student Name"/>
+
+
+
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add   Student"
+        android:textColor="@color/ButtonText"
+        android:layout_gravity="center"
+        android:background="@color/ButtonBG"
+        android:id="@+id/bt_add_st"
+        android:paddingHorizontal="20dp"
+        android:layout_marginVertical="20dp"/>
+
+</LinearLayout>
